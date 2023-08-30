@@ -1,3 +1,4 @@
+import { useMarkdown } from "@/app/zustand/store";
 import React from "react";
 import styled from "styled-components";
 
@@ -24,23 +25,46 @@ const HeadingText = styled.h3`
   letter-spacing: 1px;
 `;
 
-const PreviewContainer = styled.div`
+// const PreviewContainer = styled.div`
+//   width: 100%;
+//   height: 100%;
+
+//   padding: 1rem 2rem;
+
+//   background-color: var(--bg3);
+//   color: var(--text2);
+
+//   font-size: 1.8rem;
+// `;
+
+const PreviewContainer = styled.textarea`
   width: 100%;
   height: 100%;
 
+  padding: 1rem 2rem;
+
   background-color: var(--bg3);
+  color: var(--text2);
+
+  font-size: 1.8rem;
+
+  outline: none;
+  border: none;
 `;
 
 type PrewiewProps = {};
 
 const Prewiew: React.FC<PrewiewProps> = () => {
+  const text = useMarkdown((state) => state.text);
+
   return (
     <Container>
       <HeadingContainer>
         <HeadingText>Preview</HeadingText>
       </HeadingContainer>
 
-      <PreviewContainer></PreviewContainer>
+      {/* <PreviewContainer>{text}</PreviewContainer> */}
+      <PreviewContainer value={text} readOnly />
     </Container>
   );
 };

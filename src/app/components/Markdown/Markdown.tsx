@@ -1,3 +1,4 @@
+import { useMarkdown } from "@/app/zustand/store";
 import React from "react";
 import styled from "styled-components";
 
@@ -26,23 +27,39 @@ const HeadingText = styled.h3`
   letter-spacing: 1px;
 `;
 
-const WritingContainer = styled.div`
+const WritingContainer = styled.textarea`
   width: 100%;
   height: 100%;
 
+  padding: 1rem 2rem;
+
   background-color: var(--bg3);
+  color: var(--text2);
+  font-size: 1.8rem;
+
+  outline: none;
+  border: none;
 `;
 
 type MarkdownProps = {};
 
 const Markdown: React.FC<MarkdownProps> = () => {
+  const text = useMarkdown((state) => state.text);
+  const setText = useMarkdown((state) => state.setText);
+
+  console.log(text);
+
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setText(e.target.value);
+  };
+
   return (
     <Container>
       <HeadingContainer>
         <HeadingText>Markdown</HeadingText>
       </HeadingContainer>
 
-      <WritingContainer></WritingContainer>
+      <WritingContainer value={text} onChange={handleChange} />
     </Container>
   );
 };
