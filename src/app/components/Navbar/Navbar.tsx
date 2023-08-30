@@ -2,8 +2,15 @@
 
 import React from "react";
 import styled from "styled-components";
-import { MenuApp, FileEarmarkText, Trash, Save } from "@styled-icons/bootstrap";
+import {
+  MenuApp,
+  FileEarmarkText,
+  Trash,
+  Save,
+  MenuButtonWide,
+} from "@styled-icons/bootstrap";
 import ButtonRed from "../CustomButton/ButtonRed";
+import { useOpenSidebar } from "@/app/zustand/store";
 
 const Container = styled.nav`
   display: flex;
@@ -37,6 +44,13 @@ const IconMenuOpen = styled(MenuApp)`
   width: 3rem;
 
   color: rgb(255, 229, 105);
+`;
+
+const IconMenuClose = styled(MenuButtonWide)`
+  height: 3rem;
+  width: 3rem;
+
+  color: var(--red);
 `;
 
 const LogoContainer = styled.div`
@@ -145,11 +159,14 @@ const ButtonContainer = styled.div`
 type NavbarProps = {};
 
 const Navbar: React.FC<NavbarProps> = () => {
+  const open = useOpenSidebar((state) => state.open);
+  const setOpen = useOpenSidebar((state) => state.setOpen);
+
   return (
     <Container>
       {/* MENU BUTTON */}
-      <MenuContainer>
-        <IconMenuOpen />
+      <MenuContainer onClick={setOpen}>
+        {open === false ? <IconMenuOpen /> : <IconMenuClose />}
       </MenuContainer>
 
       {/* LOGO */}

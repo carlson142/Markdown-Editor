@@ -43,6 +43,9 @@
   --red: rgb(228, 102, 67);
   --text1: white;
   --text2: rgb(193, 196, 203);
+
+  --bg2: rgb(29, 31, 34);
+  --bg3: rgb(21, 22, 25);
 }
 
 /* @media (prefers-color-scheme: dark) {
