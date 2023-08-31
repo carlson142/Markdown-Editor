@@ -57,6 +57,19 @@ type PrewiewProps = {};
 const Prewiew: React.FC<PrewiewProps> = () => {
   const text = useMarkdown((state) => state.text);
 
+  //TODO: Working on text transformation
+  const arrayFromTextarea = text.split("\n");
+  console.log(arrayFromTextarea);
+
+  const transformationToPreview = (text: string[]) => {
+    const a = text.map((el, i) => el.slice(0, 3));
+
+    return a;
+  };
+
+  let test = transformationToPreview(arrayFromTextarea);
+  console.log(test);
+
   return (
     <Container>
       <HeadingContainer>

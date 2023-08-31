@@ -47,7 +47,7 @@ const Markdown: React.FC<MarkdownProps> = () => {
   const text = useMarkdown((state) => state.text);
   const setText = useMarkdown((state) => state.setText);
 
-  console.log(text);
+  // console.log(text);
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
